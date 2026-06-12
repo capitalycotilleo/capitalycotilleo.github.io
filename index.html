@@ -479,7 +479,7 @@ document.getElementById('form-contacto').addEventListener('submit', function(ev)
   var msg       = document.getElementById('c-msg').value.trim();
   if(!nombres || !email || email.indexOf('@')<0 || !msg){ avisar('c-aviso','Completa al menos nombre, email y tu mensaje.',false); return; }
   if(!document.getElementById('c-priv').checked){ avisar('c-aviso','Debes aceptar la Política de Privacidad.',false); return; }
-  if(W3F_KEY.indexOf('PEGA_AQUI')===0){ // aún sin configurar: no perder el mensaje
+  if(W3F_KEY.indexOf('85e5ff9a-3b68-4781-8019-9e9407e02bcc')===0){ // aún sin configurar: no perder el mensaje
     location.href='mailto:info@capitalycotilleo.com?subject=Contacto web&body='+encodeURIComponent(msg+'\n\n'+nombres+' '+apellidos+'\n'+email+'\n'+tel);
     return;
   }
