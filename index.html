@@ -11,6 +11,7 @@
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24/build/css/intlTelInput.css">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -120,6 +121,8 @@ nav .cta:hover{color:#fff;opacity:.9}
 .fbox .aviso{font-size:13px;margin-top:12px;text-align:center;min-height:18px}
 .fbox .aviso.ok{color:#2e7d32}
 .fbox .aviso.mal{color:#b3261e}
+.iti{width:100%}
+.iti__search-input{padding:10px 12px;font-family:var(--sans)}
 
 /* ══════════════════ PIE DE PÁGINA ══════════════════ */
 footer{background:var(--ink);color:#fff;padding:56px 40px 28px;text-align:center}
@@ -428,6 +431,7 @@ footer .linea a:hover{color:var(--accent)}
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24/build/js/intlTelInput.min.js"></script>
 <script>
 // ══════════════════════════════════════════════════════════════
 // FORMULARIOS — configuración
@@ -438,8 +442,14 @@ var GF_ID           = "1FAIpQLSf9rAGH4n7SgTg6vdD4oNlal9Y2CRit86hVExv5jM-wwOIwcQ"
 var GF_ENTRY_NOMBRE = "entry.1884520602";
 var GF_ENTRY_EMAIL  = "entry.1649668528";
 // 2) CONTACTO → Web3Forms (envía el mensaje a info@capitalycotilleo.com).
-var W3F_KEY = "85e5ff9a-3b68-4781-8019-9e9407e02bcc";
+var W3F_KEY = "PEGA_AQUI_TU_ACCESS_KEY";
 // ══════════════════════════════════════════════════════════════
+
+// Selector de país con prefijo automático en el teléfono
+var itiTel = window.intlTelInput(document.getElementById('c-tel'), {
+  initialCountry: 'es',
+  separateDialCode: true
+});
 
 function avisar(id, texto, ok){
   var el = document.getElementById(id);
@@ -475,11 +485,12 @@ document.getElementById('form-contacto').addEventListener('submit', function(ev)
   var nombres   = document.getElementById('c-nombres').value.trim();
   var apellidos = document.getElementById('c-apellidos').value.trim();
   var email     = document.getElementById('c-email').value.trim();
-  var tel       = document.getElementById('c-tel').value.trim();
+  var telLocal  = document.getElementById('c-tel').value.trim();
+  var tel       = telLocal ? '+' + itiTel.getSelectedCountryData().dialCode + ' ' + telLocal : '';
   var msg       = document.getElementById('c-msg').value.trim();
   if(!nombres || !email || email.indexOf('@')<0 || !msg){ avisar('c-aviso','Completa al menos nombre, email y tu mensaje.',false); return; }
   if(!document.getElementById('c-priv').checked){ avisar('c-aviso','Debes aceptar la Política de Privacidad.',false); return; }
-  if(W3F_KEY.indexOf('85e5ff9a-3b68-4781-8019-9e9407e02bcc')===0){ // aún sin configurar: no perder el mensaje
+  if(W3F_KEY.indexOf('PEGA_AQUI')===0){ // aún sin configurar: no perder el mensaje
     location.href='mailto:info@capitalycotilleo.com?subject=Contacto web&body='+encodeURIComponent(msg+'\n\n'+nombres+' '+apellidos+'\n'+email+'\n'+tel);
     return;
   }
