@@ -6,6 +6,9 @@
 <title>Capital y Cotilleo · Análisis financiero y divulgación</title>
 <meta name="description" content="Capital y Cotilleo: macroeconomía, geopolítica global, análisis de empresas, finanzas personales y cotilleo corporativo. Lo macro, en lenguaje claro.">
 
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -381,6 +384,8 @@ var PLAYLIST_ID = "PLUkp6p7umnX3cVy1M4VPQlkpc76Q5wZ3A";
   var url  = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feed);
   fetch(url).then(function(r){return r.json()}).then(function(data){
     if(!data.items || !data.items.length) return;
+    // Ordenar del más nuevo al más antiguo
+    data.items.sort(function(a,b){ return new Date(b.pubDate) - new Date(a.pubDate); });
     var grid = document.getElementById('blog-grid');
     var posts = grid.querySelectorAll('.post');
     var meses = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
