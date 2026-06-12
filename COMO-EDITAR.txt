@@ -1,0 +1,36 @@
+CÓMO EDITAR TU WEB (sin saber programar)
+=========================================
+
+EDITAR TEXTO
+1. Entra en github.com → tu repositorio capitalycotilleo.github.io
+2. Haz clic en index.html → icono del LÁPIZ (arriba a la derecha)
+3. Busca el texto que quieres cambiar (Cmd+F), cámbialo
+4. Botón verde "Commit changes" → la web se actualiza en ~1 minuto
+
+El archivo está organizado por secciones con carteles grandes:
+  <!-- ════ HERO ════ -->, <!-- ════ EQUIPO ════ -->, etc.
+Cambia solo lo que hay ENTRE las etiquetas (ej: <h3>ESTO</h3>),
+nunca las etiquetas mismas (<h3>, </p>, <div...>).
+
+AÑADIR FOTOS
+1. En el repositorio, entra en la carpeta "img"
+2. Add file → Upload files → sube tu foto
+3. Nombres que la web ya reconoce automáticamente:
+   equipo.jpg, luis.jpg, johismar.jpg, blog1.jpg, blog2.jpg, blog3.jpg
+   (en cuanto existen, sustituyen al recuadro a rayas; si no existen,
+   se muestra el recuadro — no hay que tocar código)
+
+CAMBIAR COLORES
+En index.html, al principio, dentro de :root{...} están los colores
+de toda la web (--accent es el dorado, --ink el azul marino).
+
+SECCIONES OCULTAS (contadores, testimonios, colaboraciones)
+Están dentro del archivo, desactivadas con marcas de comentario
+<!-- ... -->. Tienen instrucciones al lado. Actívalas solo cuando
+tengas datos REALES (cifras verdaderas, testimonios con permiso,
+colaboraciones existentes).
+
+REGLA DE ORO
+Después de cada cambio, abre capitalycotilleo.com y comprueba que
+todo sigue bien. Si algo se rompe, en GitHub: History → botón "..."
+del cambio anterior → puedes ver y restaurar la versión previa.

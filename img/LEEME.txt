@@ -1,0 +1,7 @@
+Sube aquí las fotos de la web (JPG o PNG).
+Nombres sugeridos que el index.html ya espera:
+  equipo.jpg   -> retrato del hero (vertical, proporción 4:5)
+  luis.jpg     -> foto de Luis (cuadrada)
+  johismar.jpg -> foto de Johismar (cuadrada)
+  blog1.jpg, blog2.jpg, blog3.jpg -> miniaturas del blog (16:9)
+Mientras un archivo no exista, la web muestra el recuadro a rayas automáticamente.
