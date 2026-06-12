@@ -102,13 +102,24 @@ nav .cta:hover{color:#fff;opacity:.9}
 .post .meta .fecha{color:var(--ink-soft)}
 .post h3{font-family:var(--serif);font-size:21px;font-weight:500;margin-top:8px;line-height:1.2;letter-spacing:-.3px}
 
-.cierre{padding-top:72px;padding-bottom:72px;text-align:center}
-.cierre .caja{max-width:560px;margin:0 auto}
+.cierre{padding-top:72px;padding-bottom:72px;background:var(--bg2)}
+.cierre .cab{text-align:center;margin-bottom:40px}
 .cierre h2{font-family:var(--serif);font-size:clamp(32px,4.5vw,44px);font-weight:500;margin:8px 0 14px;letter-spacing:-.8px;line-height:1.05}
 .cierre p{font-size:15px;color:var(--ink-soft);line-height:1.55}
-.form-news{display:flex;margin:22px auto 0;border:1.5px solid var(--ink);max-width:480px}
-.form-news input{flex:1;padding:14px 16px;border:none;background:transparent;font-size:15px;color:var(--ink);outline:none;font-family:var(--sans);min-width:0}
-.form-news button{background:var(--accent);color:#fff;border:none;padding:0 22px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1.2px;cursor:pointer}
+.fbox{background:var(--bg);border:1px solid var(--rule);padding:32px}
+.fbox h3{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:-.4px;margin:10px 0 6px}
+.fbox .sub{font-size:14px;color:var(--ink-soft);margin-bottom:18px}
+.fbox label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:14px 0 6px}
+.fbox input[type=text],.fbox input[type=email],.fbox input[type=tel],.fbox textarea{width:100%;padding:12px 14px;border:1.5px solid var(--rule);background:var(--bg);font-size:15px;color:var(--ink);font-family:var(--sans);outline:none;border-radius:2px}
+.fbox input:focus,.fbox textarea:focus{border-color:var(--accent)}
+.fbox textarea{min-height:110px;resize:vertical}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px}
+.check input{margin-top:3px;accent-color:var(--accent)}
+.check span{font-size:13px;color:var(--ink-soft)}
+.fbox .btn{border:none;cursor:pointer;width:100%;margin-top:18px;font-family:var(--sans)}
+.fbox .aviso{font-size:13px;margin-top:12px;text-align:center;min-height:18px}
+.fbox .aviso.ok{color:#2e7d32}
+.fbox .aviso.mal{color:#b3261e}
 
 /* ══════════════════ PIE DE PÁGINA ══════════════════ */
 footer{background:var(--ink);color:#fff;padding:56px 40px 28px;text-align:center}
@@ -160,7 +171,7 @@ footer .linea a:hover{color:var(--accent)}
     <a class="ico" href="https://www.youtube.com/@CapitalyCotilleo" target="_blank" rel="noopener" aria-label="YouTube"><img src="https://cdn.simpleicons.org/youtube/f4f1ec" alt="YouTube"></a>
     <a class="ico" href="https://www.instagram.com/capitalycotilleo/" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/f4f1ec" alt="Instagram"></a>
     <a class="ico" href="https://www.tiktok.com/@capitalycotilleo" target="_blank" rel="noopener" aria-label="TikTok"><img src="https://cdn.simpleicons.org/tiktok/f4f1ec" alt="TikTok"></a>
-    <a class="cta" href="mailto:info@capitalycotilleo.com">Contáctanos</a>
+    <a class="cta" href="#semanal">Contáctanos</a>
   </nav>
 </header>
 
@@ -327,16 +338,70 @@ footer .linea a:hover{color:var(--accent)}
   </div>
 </section>
 
-<!-- ════ EL SEMANAL ════ -->
-<section class="cierre" id="newsletter">
-  <div class="caja">
+<!-- ════════════════════════════════════════════════════════════
+     EL SEMANAL — suscripción a la newsletter + formulario de contacto
+     CONFIGURACIÓN (busca en el script del final):
+       · GF_ID / GF_ENTRY_*  → formulario de Google (newsletter → Sheets/CSV)
+       · W3F_KEY             → clave de Web3Forms (contacto → info@)
+     ════════════════════════════════════════════════════════════ -->
+<section class="cierre" id="semanal">
+  <div class="cab">
     <div class="eyebrow">El semanal</div>
     <h2>Cada Viernes, una lectura honesta.</h2>
     <p>Lo que de verdad mueve los mercados, en tu correo cada viernes.</p>
-    <div class="form-news">
-      <input id="email-news" type="email" placeholder="tu@correo.com">
-      <button onclick="altaNews()">SUSCRIBIR</button>
+  </div>
+  <div class="grid-2">
+
+    <!-- ── Suscripción ── -->
+    <div class="fbox" id="newsletter">
+      <div class="eyebrow">Suscríbete</div>
+      <h3>Recibe el semanal</h3>
+      <div class="sub">Nuevos episodios, análisis y el mejor cotilleo corporativo.</div>
+      <form id="form-news" novalidate>
+        <label for="n-nombre">Tu nombre</label>
+        <input type="text" id="n-nombre" autocomplete="name">
+        <label for="n-email">Tu correo</label>
+        <input type="email" id="n-email" autocomplete="email">
+        <div class="check">
+          <input type="checkbox" id="n-priv">
+          <span>He leído y acepto la <a href="/privacidad/" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+        </div>
+        <button class="btn btn-gold" type="submit">¡Suscribirme!</button>
+        <div class="aviso" id="n-aviso"></div>
+      </form>
     </div>
+
+    <!-- ── Contacto ── -->
+    <div class="fbox" id="contacto-form">
+      <div class="eyebrow">Contacto</div>
+      <h3>Escríbenos</h3>
+      <div class="sub">Cuéntanos tu consulta y te responderemos lo antes posible.</div>
+      <form id="form-contacto" novalidate>
+        <div class="grid-2" style="gap:14px">
+          <div>
+            <label for="c-nombres">Nombres</label>
+            <input type="text" id="c-nombres" autocomplete="given-name">
+          </div>
+          <div>
+            <label for="c-apellidos">Apellidos</label>
+            <input type="text" id="c-apellidos" autocomplete="family-name">
+          </div>
+        </div>
+        <label for="c-email">Email</label>
+        <input type="email" id="c-email" autocomplete="email">
+        <label for="c-tel">Teléfono</label>
+        <input type="tel" id="c-tel" autocomplete="tel">
+        <label for="c-msg">¿En qué te podemos ayudar?</label>
+        <textarea id="c-msg"></textarea>
+        <div class="check">
+          <input type="checkbox" id="c-priv">
+          <span>He leído y acepto la <a href="/privacidad/" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+        </div>
+        <button class="btn btn-gold" type="submit">Enviar Mensaje</button>
+        <div class="aviso" id="c-aviso"></div>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -364,11 +429,79 @@ footer .linea a:hover{color:var(--accent)}
 </footer>
 
 <script>
-// ── Newsletter: abre tu correo con el email del interesado ──
-function altaNews(){
-  var e=document.getElementById('email-news').value;
-  location.href='mailto:info@capitalycotilleo.com?subject=Alta newsletter&body=Quiero suscribirme al newsletter. Mi correo: '+encodeURIComponent(e);
+// ══════════════════════════════════════════════════════════════
+// FORMULARIOS — configuración
+// 1) NEWSLETTER → Google Forms (las respuestas caen en tu Google
+//    Sheets con fecha automática; descargable como CSV).
+//    Pega el ID del formulario y los dos códigos "entry".
+var GF_ID           = "1FAIpQLSf9rAGH4n7SgTg6vdD4oNlal9Y2CRit86hVExv5jM-wwOIwcQ";
+var GF_ENTRY_NOMBRE = "entry.1884520602";
+var GF_ENTRY_EMAIL  = "entry.1649668528";
+// 2) CONTACTO → Web3Forms (envía el mensaje a info@capitalycotilleo.com).
+var W3F_KEY = "PEGA_AQUI_TU_ACCESS_KEY";
+// ══════════════════════════════════════════════════════════════
+
+function avisar(id, texto, ok){
+  var el = document.getElementById(id);
+  el.textContent = texto;
+  el.className = 'aviso ' + (ok ? 'ok' : 'mal');
 }
+
+document.getElementById('form-news').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var nombre = document.getElementById('n-nombre').value.trim();
+  var email  = document.getElementById('n-email').value.trim();
+  if(!nombre || !email || email.indexOf('@')<0){ avisar('n-aviso','Revisa tu nombre y tu correo.',false); return; }
+  if(!document.getElementById('n-priv').checked){ avisar('n-aviso','Debes aceptar la Política de Privacidad.',false); return; }
+  if(GF_ID.indexOf('PEGA_AQUI')===0){ // aún sin configurar: no perder al suscriptor
+    location.href='mailto:info@capitalycotilleo.com?subject=Alta newsletter&body='+encodeURIComponent('Nombre: '+nombre+'\nCorreo: '+email);
+    return;
+  }
+  var datos = new URLSearchParams();
+  datos.append(GF_ENTRY_NOMBRE, nombre);
+  datos.append(GF_ENTRY_EMAIL, email);
+  fetch('https://docs.google.com/forms/d/e/'+GF_ID+'/formResponse', {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:datos.toString()
+  }).then(function(){
+    avisar('n-aviso','¡Ya estás suscrito! Bienvenido al semanal. 🎉',true);
+    document.getElementById('form-news').reset();
+  }).catch(function(){ avisar('n-aviso','No se pudo enviar. Inténtalo de nuevo.',false); });
+});
+
+document.getElementById('form-contacto').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var nombres   = document.getElementById('c-nombres').value.trim();
+  var apellidos = document.getElementById('c-apellidos').value.trim();
+  var email     = document.getElementById('c-email').value.trim();
+  var tel       = document.getElementById('c-tel').value.trim();
+  var msg       = document.getElementById('c-msg').value.trim();
+  if(!nombres || !email || email.indexOf('@')<0 || !msg){ avisar('c-aviso','Completa al menos nombre, email y tu mensaje.',false); return; }
+  if(!document.getElementById('c-priv').checked){ avisar('c-aviso','Debes aceptar la Política de Privacidad.',false); return; }
+  if(W3F_KEY.indexOf('PEGA_AQUI')===0){ // aún sin configurar: no perder el mensaje
+    location.href='mailto:info@capitalycotilleo.com?subject=Contacto web&body='+encodeURIComponent(msg+'\n\n'+nombres+' '+apellidos+'\n'+email+'\n'+tel);
+    return;
+  }
+  var boton = this.querySelector('button'); boton.disabled = true;
+  fetch('https://api.web3forms.com/submit', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({
+      access_key: W3F_KEY,
+      subject: 'Contacto web · '+nombres+' '+apellidos,
+      from_name: 'Web Capital y Cotilleo',
+      'Nombre': nombres+' '+apellidos,
+      'Email': email,
+      'Teléfono': tel,
+      'Mensaje': msg
+    })
+  }).then(function(r){ return r.json(); }).then(function(res){
+    boton.disabled = false;
+    if(res.success){ avisar('c-aviso','Mensaje enviado. ¡Gracias por escribirnos!',true); document.getElementById('form-contacto').reset(); }
+    else{ avisar('c-aviso','No se pudo enviar. Inténtalo de nuevo.',false); }
+  }).catch(function(){ boton.disabled=false; avisar('c-aviso','No se pudo enviar. Inténtalo de nuevo.',false); });
+});
 
 // ══════════════════════════════════════════════════════════════
 // BLOG AUTOMÁTICO DESDE YOUTUBE
