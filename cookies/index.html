@@ -31,10 +31,26 @@ footer{margin-top:60px;background:var(--ink);color:#fff;padding:28px 40px;font-f
 footer a{color:#fff;text-decoration:none}
 footer a:hover{color:var(--accent)}
 @media(max-width:700px){header,footer{padding-left:20px;padding-right:20px}footer{flex-direction:column}}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.volver{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#f4f1ec;text-decoration:none;border:1px solid rgba(244,241,236,.35);padding:8px 14px;border-radius:6px;white-space:nowrap}
+.volver:hover{border-color:var(--accent);color:var(--accent)}
+.subnav{background:var(--bg2);padding:12px 40px;display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
+.subnav a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:7px 12px;border:1px solid var(--rule);border-radius:6px}
+.subnav a:hover{color:var(--accent);border-color:var(--accent)}
+.subnav a.activa{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(max-width:700px){.subnav{padding:10px 20px}.marca{font-size:20px}.volver{padding:7px 10px;font-size:10px}.wrap{padding:40px 18px}h1{font-size:30px}}
 </style>
 </head>
 <body>
-<header><a class="marca" href="/">Capital <em>&amp;</em> Cotilleo</a></header>
+<header>
+  <a class="marca" href="/">Capital <em>&amp;</em> Cotilleo</a>
+  <a class="volver" href="/">← Volver a la web</a>
+</header>
+<div class="subnav">
+  <a href="/terminos/">Aviso Legal</a>
+  <a href="/privacidad/">Política de Privacidad</a>
+  <a href="/cookies/" class="activa">Política de Cookies</a>
+</div>
 <div class="wrap">
 <div class="eyebrow">Documentación legal</div>
 <h1>Política de Cookies</h1>
