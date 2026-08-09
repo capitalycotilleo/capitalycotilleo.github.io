@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Autorización completada — Publicador de Shorts</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--bg2:#f4f1ec;--ink:#0c1a2b;--ink-soft:#5a6878;--accent:#c4a960;--rule:rgba(12,26,43,.08);--ok:#1f7a4d}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+header{background:var(--ink);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.marca{font-family:"Fraunces",serif;font-size:24px;font-weight:700;letter-spacing:-.6px;text-decoration:none;color:#f4f1ec}
+.marca em{color:var(--accent)}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px}
+.card{max-width:560px;width:100%;border:1px solid var(--rule);border-radius:16px;padding:40px;text-align:center;background:var(--bg2)}
+.tick{width:56px;height:56px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:"Fraunces",serif;font-size:32px;font-weight:500;letter-spacing:-.6px;margin:8px 0 12px}
+p{color:var(--ink-soft);font-size:15.5px;margin-bottom:14px}
+button{font-family:"Inter",sans-serif;font-size:15px;font-weight:600;border:0;border-radius:10px;padding:13px 26px;background:var(--ink);color:#fff;cursor:pointer;margin-top:6px}
+button:hover{background:#16304d}
+button.hecho{background:var(--ok)}
+.nota{font-size:13px;color:var(--ink-soft);margin-top:18px}
+.err{color:#a3302f}
+footer{background:var(--ink);color:#fff;padding:22px 40px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:#fff;text-decoration:none}
+footer a:hover{color:var(--accent)}
+@media(max-width:700px){header,footer{padding:16px 20px}.card{padding:28px}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="marca" href="/">Capital <em>&amp;</em> Cotilleo</a>
+</header>
+
+<main>
+  <div class="card" id="card">
+    <div class="tick" id="icono">✓</div>
+    <div class="eyebrow">Publicador de Shorts</div>
+    <h1 id="titulo">Autorización completada</h1>
+    <p id="texto">Ya puedes volver al Publicador de Shorts. Copia esta dirección y pégala en
+    la aplicación para terminar de conectar tu cuenta.</p>
+    <button id="copiar">Copiar la dirección</button>
+    <p class="nota">Esta página no guarda ningún dato. El código de autorización viaja solo
+    en la dirección de esta ventana y caduca en unos minutos.</p>
+  </div>
+</main>
+
+<footer>
+  <div>© 2026 Capital y Cotilleo</div>
+  <div>
+    <a href="/publicador/">Publicador de Shorts</a> ·
+    <a href="/publicador/privacidad/">Privacidad</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var boton = document.getElementById('copiar');
+
+  if (params.get('error')) {
+    document.getElementById('icono').textContent = '!';
+    document.getElementById('icono').style.background = '#a3302f';
+    document.getElementById('titulo').textContent = 'No se completó la autorización';
+    document.getElementById('texto').innerHTML =
+      'TikTok ha devuelto: <strong class="err">' +
+      String(params.get('error')).replace(/[<>&]/g, '') +
+      '</strong>. Vuelve al Publicador de Shorts e inténtalo de nuevo.';
+    boton.style.display = 'none';
+    return;
+  }
+
+  if (!params.get('code')) {
+    document.getElementById('titulo').textContent = 'Página de retorno';
+    document.getElementById('texto').textContent =
+      'Aquí es donde TikTok te devuelve después de autorizar el Publicador de Shorts. ' +
+      'Si has llegado por tu cuenta, no hay nada que hacer en esta página.';
+    boton.style.display = 'none';
+    return;
+  }
+
+  boton.addEventListener('click', function(){
+    navigator.clipboard.writeText(window.location.href).then(function(){
+      boton.textContent = 'Dirección copiada';
+      boton.classList.add('hecho');
+    }, function(){
+      boton.textContent = 'Copia la dirección de la barra del navegador';
+    });
+  });
+})();
+</script>
+</body>
+</html>
