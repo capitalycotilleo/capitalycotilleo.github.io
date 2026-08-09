@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publicador de Shorts — Capital y Cotilleo</title>
+<meta name="description" content="Herramienta interna de Capital y Cotilleo para programar y publicar sus propios vídeos verticales en TikTok, YouTube, Instagram y Facebook.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,700;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--bg2:#f4f1ec;--ink:#0c1a2b;--ink-soft:#5a6878;--accent:#c4a960;--rule:rgba(12,26,43,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+header{position:sticky;top:0;z-index:100;background:var(--ink);padding:16px 40px;box-shadow:0 2px 14px rgba(12,26,43,.25);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.marca{font-family:"Fraunces",serif;font-size:24px;font-weight:700;letter-spacing:-.6px;text-decoration:none;color:#f4f1ec}
+.marca em{color:var(--accent)}
+.volver{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#f4f1ec;text-decoration:none;border:1px solid rgba(244,241,236,.35);padding:8px 14px;border-radius:6px;white-space:nowrap}
+.volver:hover{border-color:var(--accent);color:var(--accent)}
+.subnav{background:var(--bg2);padding:12px 40px;display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
+.subnav a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:7px 12px;border:1px solid var(--rule);border-radius:6px}
+.subnav a:hover{color:var(--accent);border-color:var(--accent)}
+.subnav a.activa{background:var(--ink);color:#fff;border-color:var(--ink)}
+.wrap{max-width:860px;margin:0 auto;padding:60px 24px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:"Fraunces",serif;font-size:clamp(34px,5vw,48px);font-weight:500;letter-spacing:-1px;margin:10px 0 14px}
+.lede{font-size:18px;color:var(--ink-soft);margin-bottom:34px;max-width:640px}
+h2{font-family:"Fraunces",serif;font-size:24px;font-weight:500;margin:40px 0 12px;letter-spacing:-.3px}
+h3{font-family:"Inter",sans-serif;font-size:16px;font-weight:600;margin:0 0 6px}
+p,li{color:var(--ink-soft);font-size:15.5px;margin-bottom:12px}
+ul{margin:0 0 12px 22px}
+li{margin-bottom:6px}
+strong{color:var(--ink)}
+a{color:var(--accent)}
+.cajas{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:24px 0}
+.caja{border:1px solid var(--rule);border-radius:12px;padding:20px;background:var(--bg2)}
+.caja p{margin:0;font-size:14.5px}
+.paso{display:flex;gap:16px;margin-bottom:18px;align-items:flex-start}
+.num{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.aviso{border-left:3px solid var(--accent);background:var(--bg2);padding:16px 20px;border-radius:0 10px 10px 0;margin:26px 0}
+.aviso p{margin:0}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);color:var(--ink-soft)}
+th{color:var(--ink);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+footer{margin-top:60px;background:var(--ink);color:#fff;padding:28px 40px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+footer a{color:#fff;text-decoration:none}
+footer a:hover{color:var(--accent)}
+@media(max-width:700px){header,footer,.subnav{padding-left:20px;padding-right:20px}footer{flex-direction:column}.marca{font-size:20px}.wrap{padding:40px 18px}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="marca" href="/">Capital <em>&amp;</em> Cotilleo</a>
+  <a class="volver" href="/">← Volver a la web</a>
+</header>
+<div class="subnav">
+  <a href="/publicador/" class="activa">Publicador de Shorts</a>
+  <a href="/publicador/terminos/">Términos de uso</a>
+  <a href="/publicador/privacidad/">Privacidad</a>
+</div>
+
+<div class="wrap">
+<div class="eyebrow">Herramienta interna</div>
+<h1>Publicador de Shorts</h1>
+<p class="lede">La herramienta con la que Capital y Cotilleo programa y publica sus
+propios vídeos verticales en TikTok, YouTube, Instagram y Facebook desde un solo sitio.</p>
+
+<div class="aviso">
+  <p><strong>Es una herramienta de uso propio.</strong> No es un servicio abierto ni se
+  ofrece a terceros. La usan únicamente las personas autorizadas por Capital y Cotilleo
+  para publicar los contenidos originales de la marca en sus propias cuentas.</p>
+</div>
+
+<h2>Qué hace</h2>
+<p>Cada episodio del pódcast genera varios cortes verticales. Publicarlos a mano en cuatro
+redes, uno al día y a la misma hora, es un trabajo repetitivo y fácil de olvidar. El
+Publicador de Shorts se encarga de todo el recorrido:</p>
+
+<div class="cajas">
+  <div class="caja">
+    <h3>Prepara</h3>
+    <p>Comprueba duración y resolución de cada corte, y genera una copia a 1080p para las
+    redes que no admiten 4K.</p>
+  </div>
+  <div class="caja">
+    <h3>Redacta</h3>
+    <p>Transcribe el audio y escribe título, descripción y etiquetas distintos para cada
+    red. Todo revisable y editable antes de publicar.</p>
+  </div>
+  <div class="caja">
+    <h3>Programa</h3>
+    <p>Reparte los cortes uno al día, a la hora elegida, y lleva la cuenta de qué ha salido
+    ya en cada red para no duplicar nada.</p>
+  </div>
+  <div class="caja">
+    <h3>Publica</h3>
+    <p>Envía cada vídeo a su red a la hora prevista y confirma que la publicación se ha
+    completado.</p>
+  </div>
+</div>
+
+<h2>Cómo se conecta con TikTok</h2>
+<p>La conexión con TikTok se hace con los productos oficiales de TikTok for Developers.
+El operador autoriza su propia cuenta una vez y puede revocar ese permiso cuando quiera
+desde los ajustes de TikTok.</p>
+
+<div class="paso">
+  <div class="num">1</div>
+  <div>
+    <h3>Conectar la cuenta — Login Kit</h3>
+    <p>El operador inicia sesión en TikTok y concede los permisos en la pantalla de
+    consentimiento de TikTok. La herramienta nunca ve ni almacena su contraseña. Con el
+    permiso <strong>user.info.basic</strong> se lee el nombre y el avatar de la cuenta, para
+    que siempre quede claro a qué perfil se va a publicar.</p>
+  </div>
+</div>
+
+<div class="paso">
+  <div class="num">2</div>
+  <div>
+    <h3>Revisar antes de publicar — Content Posting API</h3>
+    <p>Antes de enviar nada, la herramienta abre una pantalla de confirmación que muestra el
+    perfil de destino, una vista previa del vídeo, el texto de la publicación (editable),
+    quién podrá verlo, si se permiten comentarios, dúos y stitch, y si el contenido es
+    comercial. Nada se envía a TikTok hasta que el operador lo confirma expresamente.</p>
+  </div>
+</div>
+
+<div class="paso">
+  <div class="num">3</div>
+  <div>
+    <h3>Publicar o dejar en borrador</h3>
+    <p>Con <strong>video.publish</strong> el vídeo se publica directamente en el perfil con
+    los ajustes elegidos en esa pantalla. Con <strong>video.upload</strong> el vídeo llega a
+    la bandeja de TikTok como borrador, para terminar de editarlo y publicarlo desde la app.
+    La herramienta consulta el estado de la publicación hasta confirmar que ha terminado.</p>
+  </div>
+</div>
+
+<h2>Permisos que se piden y para qué</h2>
+<table>
+  <tr><th>Permiso</th><th>Para qué se usa</th></tr>
+  <tr><td><strong>user.info.basic</strong></td><td>Mostrar el nombre y el avatar de la cuenta conectada, para confirmar el destino antes de publicar.</td></tr>
+  <tr><td><strong>video.publish</strong></td><td>Publicar el vídeo en el perfil con el título, la visibilidad y las interacciones que el operador ha elegido.</td></tr>
+  <tr><td><strong>video.upload</strong></td><td>Enviar el vídeo a la bandeja de TikTok como borrador cuando se prefiere rematar la publicación en la app.</td></tr>
+</table>
+
+<h2>Qué no hace</h2>
+<ul>
+  <li>No copia ni republica contenido de otras plataformas ni de terceros: todo lo que
+  publica son vídeos originales producidos por Capital y Cotilleo.</li>
+  <li>No añade marcas de agua, logotipos ni texto promocional al vídeo.</li>
+  <li>No publica nada sin que el operador lo confirme en pantalla.</li>
+  <li>No comparte los datos de la cuenta de TikTok con nadie.</li>
+</ul>
+
+<h2>Contacto</h2>
+<p>Para cualquier duda sobre esta herramienta, incluida la eliminación de datos:
+<a href="mailto:admin@capitalycotilleo.com">admin@capitalycotilleo.com</a>.</p>
+<p>Consulta también los <a href="/publicador/terminos/">Términos de uso</a> y la
+<a href="/publicador/privacidad/">Política de Privacidad</a> de la herramienta.</p>
+</div>
+
+<footer>
+  <div>© 2026 Capital y Cotilleo</div>
+  <div>
+    <a href="/">Inicio</a> ·
+    <a href="/publicador/terminos/">Términos de uso</a> ·
+    <a href="/publicador/privacidad/">Privacidad</a>
+  </div>
+</footer>
+</body>
+</html>
